@@ -66,5 +66,15 @@ print(list3)
 list1 = [10, 20, 30, 40]
 list2 = [100, 200, 300, 400]
 
+for i, j in zip(list1, list2[::-1]):
+    print(i, j)
 
-print(list3)
+# Exercise 6: Add item 7000 after 6000 in the following Python List
+# Given:
+# list1 = [10, 20, [300, 400, [5000, 6000], 500], 30, 40]
+# Expected output:
+# [10, 20, [300, 400, [5000, 6000, 7000], 500], 30, 40]
+
+list1 = [10, 20, [300, 400, [5000, 6000], 500], 30, 40]
+list1[2][2].insert(2, 7000)
+print(list1)
