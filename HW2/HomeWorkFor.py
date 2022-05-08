@@ -27,11 +27,10 @@ for i in range(1, 6):
 # 20
 
 
-number = input('Input a number to print multiplication table: ')
+number = int(input('Input a number to print multiplication table: '))
 
-for n in number:
-    for m in range(1, 11):
-        print(int(n) * m)
+for n in range(1, 11):
+    print(number * n)
 
 
 # Exercise 3: Print the following pattern using for loop
