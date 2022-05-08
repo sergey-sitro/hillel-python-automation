@@ -4,5 +4,5 @@
 user_input1 = input("Your first input: ")
 user_input2 = input("Your second input: ")
 
-result_input = (user_input1+user_input2).replace(" ", "")
+result_input = set((user_input1 + " " + user_input2).split(" "))
 print(result_input)
