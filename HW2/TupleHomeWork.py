@@ -1,4 +1,4 @@
-# Exercise
+# Exercise 1
 # 1: Reverse the following tuple
 #
 # aTuple = (10, 20, 30, 40, 50)
@@ -9,7 +9,8 @@
 # Note: You can’t reverse tuple, but list you can.
 
 aTuple = (10, 20, 30, 40, 50)
-print(tuple(reversed(list(aTuple))))
+result = tuple(reversed(aTuple))
+print(result)
 
 # Exercise 2: Unpack the following tuple into 4 variables
 # aTuple = (10, 20, 30, 40)
