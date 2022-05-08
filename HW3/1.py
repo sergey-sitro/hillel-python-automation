@@ -3,7 +3,8 @@
 # b. заменить все вхождения "bad" на "good" в не измененном пользовательском вводе
 # c. сколько замен было произведено
 
-user_input = input("Enter something good: ")    # развернуть пользовательский ввод
+user_input = input("Enter something good: ")
+print(user_input[::-1])                         # развернуть пользовательский ввод
 changes_count = user_input.count("bad")         # считаем сколько раз 'bad' входит в изначальный инпут
 user_input = user_input.replace("bad", "good")  # меняем 'bad' на 'good' в исходном инпуте
 
