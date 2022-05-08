@@ -9,8 +9,9 @@
 sampleList = ["Blue", "Green", "Red"]
 sampleSet = {"Yellow", "Orange", "Black"}
 
-resultSet = set(list(sampleSet) + sampleList)
-print(resultSet)
+result = sampleSet.update(set(sampleList))
+
+print(sampleSet)
 
 
 # Exercise 2: Return a new set of identical items from a given two set
