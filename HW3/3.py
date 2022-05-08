@@ -4,9 +4,8 @@
 # 2) вывести последний элемент НЕ используя отрицательные индексы
 
 test_list = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k']
-
 using_indexes = test_list[-1]
-not_using_indexes = test_list.pop()
+not_using_indexes = test_list[len(test_list) - 1]
 
 print(using_indexes)
 print(not_using_indexes)
