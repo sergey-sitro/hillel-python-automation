@@ -36,6 +36,6 @@ while count:
         lst.append(user_input.replace(stop_word, ""))
         print(lst)
 
-    elif user_input != stop_word:
+    else:
         lst.append(user_input)
         print(lst)
