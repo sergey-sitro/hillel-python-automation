@@ -2,10 +2,9 @@ try:
     with open('example.txt') as file:
         words_dict = {}
 
-        for line in file:
-            print(line)
+        words = file.read().lower().replace("\n", " ").split(" ")
+        print(words)
 
-        words = line.split(" ")
         for i in words:
             words_dict.update({i: words.count(i)})
 
@@ -18,12 +17,17 @@ try:
     print(most_occurent_word, f"is the most occurent, found {most_occurent_word_count} time(s)")
     print(less_occurent_word, f"is the less occurent, found {less_occurent_word_count} time(s)")
 
+    words_counter = 0
     try:
         with open("spam.txt", "x") as spam:
-            spam.write(" ".join(words).replace(most_occurent_word, less_occurent_word))
+            for word in words:
+                spam.write(word + " ")
+                words_counter += 1
+                if words_counter == 10:
+                    words_counter = 0
+                    spam.write("\n")
     except FileExistsError:
         raise FileExistsError("File already exists!")
-
 
 except FileNotFoundError:
     raise FileNotFoundError("File not found! Script finished!")
