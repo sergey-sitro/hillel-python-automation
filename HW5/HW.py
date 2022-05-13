@@ -15,7 +15,6 @@ try:
     less_occurent_word = min(words_dict, key=words_dict.get)
     less_occurent_word_count = words_dict[less_occurent_word]
 
-    # print(words_dict)
     print(most_occurent_word, f"is the most occurent, found {most_occurent_word_count} time(s)")
     print(less_occurent_word, f"is the less occurent, found {less_occurent_word_count} time(s)")
 
