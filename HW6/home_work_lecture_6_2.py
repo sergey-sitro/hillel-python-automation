@@ -4,12 +4,8 @@ def get_file_path():
 
 
 def open_file() -> str:
-    try:
-        with open(get_file_path()) as file:
-            file_content = file.read()
-
-    except FileNotFoundError:
-        raise FileNotFoundError("File not found! Script finished!")
+    with open(get_file_path()) as file:
+        file_content = file.read()
 
     return file_content
 
@@ -55,7 +51,8 @@ def main():
 
 
 if __name__ == "__main__":
-    """
-    Эта конструкция гарантирует что файл будет исполнен только когда запущен на прямую
-    """
-    main()
+
+    try:
+        main()
+    except FileNotFoundError:
+        print("File not found! End of script!")
