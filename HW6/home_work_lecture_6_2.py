@@ -1,14 +1,57 @@
-def custom_func(a):
-    """Это функция пример"""
-    print(a)
+def get_file_path():
+    path = input(r"Enter file path: ")  # r - для возможности запуска на Windows
+    return path
+
+
+def open_file() -> str:
+    try:
+        with open(get_file_path()) as file:
+            file_content = file.read()
+
+    except FileNotFoundError:
+        raise FileNotFoundError("File not found! Script finished!")
+
+    return file_content
+
+
+def get_list_of_words(string) -> list:
+    return string.lower().replace("\n", " ").split(" ")
+
+
+def create_words_dict(lst):
+    words_dict = {}
+
+    for i in lst:
+        words_dict.setdefault(i, 0)
+        words_dict[i] += 1
+    print(words_dict)
+
+    return words_dict
+
+
+def get_most_occurent_word(dct):
+    most_occurent_word = max(dct, key=dct.get)
+    most_occurent_word_count = dct[most_occurent_word]
+
+    return most_occurent_word, most_occurent_word_count
+
+
+def get_less_occurent_word(dct):
+    less_occurent_word = min(dct, key=dct.get)
+    less_occurent_word_count = dct[less_occurent_word]
+
+    return less_occurent_word, less_occurent_word_count
 
 
 def main():
-    """
-    Это ваша главная функция, определите в ней всю лолгику скрипта и используйте другие функции которые определите ВЫШЕ
-    """
-    file_path = input()
-    custom_func(file_path)
+    content = open_file()
+    list_of_words = get_list_of_words(content)
+    dict_of_words = create_words_dict(list_of_words)
+    most_occurent_word, most_occurent_word_count = get_most_occurent_word(dict_of_words)
+    less_occurent_word, less_occurent_word_count = get_less_occurent_word(dict_of_words)
+
+    print(most_occurent_word, f"is the most occurent, found {most_occurent_word_count} time(s)")
+    print(less_occurent_word, f"is the less occurent, found {less_occurent_word_count} time(s)")
 
 
 if __name__ == "__main__":
