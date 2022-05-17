@@ -54,6 +54,7 @@ def main():
     print(less_occurent_word, f"is the less occurent, found {less_occurent_word_count} time(s)")
 
 
+
 if __name__ == "__main__":
     """
     Эта конструкция гарантирует что файл будет исполнен только когда запущен на прямую
