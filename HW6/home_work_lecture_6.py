@@ -4,7 +4,7 @@ def is_even(number):
     Возвращает True - если он четный
     Возвращает False - если не четный
     """
-    return True if number % 2 == 0 else False
+    return number % 2 == 0
 
 
 assert is_even(1) is False
