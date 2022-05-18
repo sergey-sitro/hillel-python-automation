@@ -44,8 +44,8 @@ def get_write_file_path():
     return write_path
 
 
-def replace_words(string, mow, low):
-    return string.replace(mow, low)
+def replace_words(lst, mow, low):
+    return " ".join(lst).replace(mow, low)
 
 
 def write_file(path, string, mode):
@@ -71,7 +71,7 @@ def main():
         print(most_occurent_word, f"is the most occurent, found {most_occurent_word_count} time(s)")
         print(less_occurent_word, f"is the less occurent, found {less_occurent_word_count} time(s)")
 
-        replaced_text = replace_words(" ".join(list_of_words), most_occurent_word, less_occurent_word)
+        replaced_text = replace_words(list_of_words, most_occurent_word, less_occurent_word)
         write_path = get_write_file_path()
 
         try:
