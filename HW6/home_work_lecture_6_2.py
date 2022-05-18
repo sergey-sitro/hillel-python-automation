@@ -48,13 +48,21 @@ def replace_words(lst, mow, low):
     return " ".join(lst).replace(mow, low)
 
 
-def write_file(path, string, mode):
-    with open(path, mode) as spam:
-        for position, word in enumerate(string.split(), start=1):
-            spam.write(word + " ")
+def prepared_list_for_writing(string, lines=10):
+    lst = []
+    for position, word in enumerate(string.split(), start=1):
+        lst.append(word)
 
-            if position % 10 == 0:
-                spam.write("\n")
+        if position % lines == 0:
+            lst.append("\n")
+    prepared_list = " ".join(lst)
+    return prepared_list
+
+
+def write_file(path, lst, mode):
+    with open(path, mode) as spam:
+        print(lst)
+        spam.writelines(lst)
 
 
 def main():
@@ -72,14 +80,15 @@ def main():
         print(less_occurent_word, f"is the less occurent, found {less_occurent_word_count} time(s)")
 
         replaced_text = replace_words(list_of_words, most_occurent_word, less_occurent_word)
+        prepared_list = prepared_list_for_writing(replaced_text)
         write_path = get_write_file_path()
 
         try:
-            write_file(write_path, replaced_text, "x")
+            write_file(write_path, prepared_list, "x")
         except FileExistsError:
             answer = input("File exists. Do you want to overwrite the file? y/N: ")
             if answer == "y":
-                write_file(write_path, replaced_text, "w")
+                write_file(write_path, prepared_list, "w")
 
 
 if __name__ == "__main__":
