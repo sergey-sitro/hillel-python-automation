@@ -75,7 +75,6 @@ def main():
         write_path = get_write_file_path()
 
         try:
-
             write_file(write_path, replaced_text, "x")
         except FileExistsError:
             answer = input("File exists. Do you want to overwrite the file? y/N: ")
