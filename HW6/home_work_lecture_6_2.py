@@ -1,5 +1,5 @@
 def get_file_path():
-    path = input(r"Enter file path: ")  # r - для возможности запуска на Windows
+    path = input(r"Enter file path: ")
     return path
 
 
@@ -39,20 +39,49 @@ def get_less_occurent_word(dct):
     return less_occurent_word, less_occurent_word_count
 
 
-def main():
-    content = open_file()
-    list_of_words = get_list_of_words(content)
-    dict_of_words = create_words_dict(list_of_words)
-    most_occurent_word, most_occurent_word_count = get_most_occurent_word(dict_of_words)
-    less_occurent_word, less_occurent_word_count = get_less_occurent_word(dict_of_words)
+def get_write_file_path():
+    write_path = input(r"Enter path to write the file: ")
+    return write_path
 
-    print(most_occurent_word, f"is the most occurent, found {most_occurent_word_count} time(s)")
-    print(less_occurent_word, f"is the less occurent, found {less_occurent_word_count} time(s)")
+
+def replace_words(string, mow, low):
+    return string.replace(mow, low)
+
+
+def write_file(path, string, mode):
+    with open(path, mode) as spam:
+        for position, word in enumerate(string.split(), start=1):
+            spam.write(word + " ")
+
+            if position % 10 == 0:
+                spam.write("\n")
+
+
+def main():
+    try:
+        content = open_file()
+    except FileNotFoundError:
+        print("File not found, script is finished!")
+    else:
+        list_of_words = get_list_of_words(content)
+        dict_of_words = create_words_dict(list_of_words)
+        most_occurent_word, most_occurent_word_count = get_most_occurent_word(dict_of_words)
+        less_occurent_word, less_occurent_word_count = get_less_occurent_word(dict_of_words)
+
+        print(most_occurent_word, f"is the most occurent, found {most_occurent_word_count} time(s)")
+        print(less_occurent_word, f"is the less occurent, found {less_occurent_word_count} time(s)")
+
+        replaced_text = replace_words(" ".join(list_of_words), most_occurent_word, less_occurent_word)
+        write_path = get_write_file_path()
+
+        try:
+
+            write_file(write_path, replaced_text, "x")
+        except FileExistsError:
+            answer = input("File exists. Do you want to overwrite the file? y/N: ")
+            if answer == "y":
+                write_file(write_path, replaced_text, "w")
 
 
 if __name__ == "__main__":
-
-    try:
-        main()
-    except FileNotFoundError:
-        print("File not found! End of script!")
+    main()
