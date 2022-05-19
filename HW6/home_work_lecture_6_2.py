@@ -45,18 +45,19 @@ def get_write_file_path():
 
 
 def replace_words(lst, mow, low):
-    return " ".join(lst).replace(mow, low)
+    return [i.replace(mow, low) for i in lst]
 
 
-def prepared_list_for_writing(string, lines=10):
-    lst = []
-    for position, word in enumerate(string.split(), start=1):
-        lst.append(word)
+def prepared_list_for_writing(lst, lines=10):
+    prepared_list = []
 
-        if position % lines == 0:
-            lst.append("\n")
-    prepared_list = " ".join(lst)
-    return prepared_list
+    for position, word in enumerate(lst, start=1):
+
+        if position % lines != 0:
+            prepared_list.append(word)
+        else:
+            prepared_list.append("\n")
+    return " ".join(prepared_list).split("\n")
 
 
 def write_file(path, lst, mode):
