@@ -45,7 +45,7 @@ def get_write_file_path():
 
 
 def replace_words(lst, mow, low):
-    return [i.replace(mow, low) for i in lst]
+    return [i if i != mow else low for i in lst]
 
 
 def prepared_list_for_writing(lst, lines=10):
