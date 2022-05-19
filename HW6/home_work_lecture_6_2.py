@@ -50,19 +50,24 @@ def replace_words(lst, mow, low):
 
 def prepared_list_for_writing(lst, lines=10):
     prepared_list = []
-
+    string = ""
     for position, word in enumerate(lst, start=1):
 
         if position % lines != 0:
-            prepared_list.append(word)
+            string += word + " "
+
         else:
-            prepared_list.append("\n")
-    return " ".join(prepared_list).split("\n")
+            string += word
+            string += "\n"
+            prepared_list.append(string)
+            string = ""
+    prepared_list.append(string)
+
+    return prepared_list
 
 
 def write_file(path, lst, mode):
     with open(path, mode) as spam:
-        print(lst)
         spam.writelines(lst)
 
 
