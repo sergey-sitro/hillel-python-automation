@@ -8,16 +8,16 @@ response_json = response.json()
 
 titles = [t["title"].capitalize() for t in response_json]
 bodies = [b["body"] for b in response_json]
-print(bodies)
+
 list_bodies = [s.split("\n") for s in bodies]
-print(list_bodies)
+
 groupped_bodies = [
     [string.capitalize() + ".\n" for string in string_list]
     for string_list in list_bodies
 ]
-print(groupped_bodies)
+
 final_bodies = ["".join(b) for b in groupped_bodies]
-print(final_bodies)
+
 title_and_body = list(zip(titles, final_bodies))
 
 fp = "/Users/sergeymatkobozhyk/Desktop/Hillel/Hillel Project/Homework/hillel-python-automation/HW7/file.txt"
