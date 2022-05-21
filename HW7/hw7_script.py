@@ -25,4 +25,4 @@ fp = "/Users/sergeymatkobozhyk/Desktop/Hillel/Hillel Project/Homework/hillel-pyt
 with open(fp, "w") as file:
     for t, b in title_and_body:
         file.write(t + "\n")
-        file.write(b + "\n\n")
+        file.write(b + "\n")
