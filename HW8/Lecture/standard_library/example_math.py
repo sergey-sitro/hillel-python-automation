@@ -1,0 +1,28 @@
+import math
+# https://docs.python.org/3/library/math.html
+
+
+print(f"math.pi - {math.pi}")
+print("---"*20)
+print(f"math.e - {math.e}")
+print("---"*20)
+print(f"math.tau - {math.tau}")
+print("---"*20)
+print(f"math.inf - {math.inf}")
+print("---"*20)
+print(f"math.nan - {math.nan}")
+print("---"*20)
+print(f"math.ceil() - {math.ceil(10.1)}")
+print("---"*20)
+print(f"math.floor() - {math.floor(10.1)}")
+print("---"*20)
+print(f"math.factorial() - {math.factorial(10)}")
+print("---"*20)
+print(f"math.fsum(iterable) - {math.fsum([0.1 for i in range(10)])}")
+print("---"*20)
+print(f"math.sqrt(x) - {math.sqrt(100)}")
+print("---"*20)
+print(f"math.exp(x) - {math.exp(1)}")
+print("---"*20)
+print(f"math.log(x[, base=e]) - {math.log(10)}")
+print("---"*20)
