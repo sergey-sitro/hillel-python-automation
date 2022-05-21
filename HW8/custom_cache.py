@@ -1,12 +1,23 @@
 import time
 
 
+def cache_func(func):
+    saved = {}
+
+    def wrapper(num):
+
+        if num not in saved:
+            saved.update({num: func(num)})
+        else:
+            return saved[num]
+    print(saved)
+    return wrapper
 
 
-# @decorator
-def main(i):
-    time.sleep(i / 10)
-    return i ** 2
+@cache_func
+def main(num):
+    time.sleep(num / 10)
+    return num ** 2
 
 
 if __name__ == "__main__":
