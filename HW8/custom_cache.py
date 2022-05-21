@@ -4,13 +4,11 @@ import time
 def cache_func(func):
     saved = {}
 
-    def wrapper(num):
+    def wrapper(*args):
+        if args not in saved:
+            saved[args] = func(*args)
+        return saved[args]
 
-        if num not in saved:
-            saved.update({num: func(num)})
-        else:
-            return saved[num]
-    print(saved)
     return wrapper
 
 
