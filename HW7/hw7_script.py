@@ -2,12 +2,11 @@ import requests
 
 url = "https://jsonplaceholder.typicode.com/posts"
 
-response = requests.get(url)
+response = requests.get(url).json()
 
-response_json = response.json()
 
-titles = [t["title"].capitalize() for t in response_json]
-bodies = [b["body"] for b in response_json]
+titles = [t["title"].capitalize() for t in response]
+bodies = [b["body"] for b in response]
 
 list_bodies = [s.split("\n") for s in bodies]
 
