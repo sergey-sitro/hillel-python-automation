@@ -7,6 +7,11 @@ class Character:
         self.armor = armor
         self.health = 100
 
+        if not isinstance(race, str) or not isinstance(damage, int) or not isinstance(armor, int):
+            raise TypeError("Wrong type!")
+        elif damage <= 0 or armor < 0:
+            raise ValueError("Wrong value!")
+
     def hit(self, damage, armor):
         self.health = self.health - damage + (damage / armor)
 
@@ -24,7 +29,6 @@ class Character:
         self.health = 100
 
 
-elf = Character("Elf", 10, 5)
 orc = Character("Orc", 12, 4)
 
 orc.hit(100, orc.armor)
