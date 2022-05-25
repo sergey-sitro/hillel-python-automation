@@ -1,5 +1,6 @@
 class Character:
     dead_health = 0
+    max_hp = 100
 
     @staticmethod
     def validate_attr_type(attr, attr_name, correct_type):
@@ -10,6 +11,11 @@ class Character:
     def validate_attr_value(attr, attr_name):
         if attr < 0:
             raise ValueError(f"{attr_name} can not be less than 0!")
+
+    @staticmethod
+    def validate_hp(health):
+        if health < Character.dead_health or health > Character.max_hp:
+            raise ValueError(f"Health should be between {Character.dead_health} and {Character.max_hp}")
 
     def __init__(self, race, damage, armor):
         self.validate_attr_type(race, "Race", str)
@@ -23,35 +29,36 @@ class Character:
         self.validate_attr_value(armor, "Armor")
         self.armor = armor
 
-        self.health = 100
+        self._health = 100
 
     def hit(self, damage):
         self.validate_attr_type(damage, "Hit damage", int)
         self.validate_attr_value(damage, "Hit damage")
-        self.health = self.health - damage + (damage / self.armor)
+        self._health = self._health - damage + (damage / self.armor)
+        self.validate_hp(self._health)
 
     def restore_health(self, health):
         self.validate_attr_type(health, "Restore HP", int)
         self.validate_attr_value(health, "Restore HP")
-        self.health += health
+        self._health += health
+        self.validate_hp(self._health)
 
     @property
     def current_health(self):
-        return self.health
+        return self._health
 
     def is_dead(self):
-        return self.health <= self.dead_health
+        return self._health <= self.dead_health
 
     def respawn(self):
-        self.health = 100
+        self._health = 100
 
 
 orc = Character("Orc", 1, 5)
 
-orc.hit(100)
+orc.hit(10)
 print(orc.current_health)
 print(orc.is_dead())
-orc.hit(1)
-orc.restore_health("Str")
+orc.restore_health(125)
 print(orc.current_health)
 print(orc.is_dead())
