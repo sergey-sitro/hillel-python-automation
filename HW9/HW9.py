@@ -24,14 +24,14 @@ class Character:
         self.validate_attr_value(armor, "Armor")
         self.armor = armor
 
-        self._health = Character._max_hp
+        self._health = self._max_hp
 
     def hit(self, damage):
         self.validate_attr_type(damage, "Hit damage", int)
         self.validate_attr_value(damage, "Hit damage")
         self._health = self._health - damage + (damage / self.armor)
 
-        if self._health < Character.dead_health:
+        if self._health < self.dead_health:
             self._health = self.dead_health
 
     def restore_health(self, health):
@@ -39,7 +39,7 @@ class Character:
         self.validate_attr_value(health, "Restore HP")
         self._health += health
 
-        if self._health > Character._max_hp:
+        if self._health > self._max_hp:
             self._health = self._max_hp
 
     @property
