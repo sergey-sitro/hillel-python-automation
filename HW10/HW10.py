@@ -9,22 +9,25 @@ def get_content(url):
 
 
 def find_next(url):
-    next_ref = BeautifulSoup(get_content(url), "html.parser").nav.a.get("href")
-    return next_ref
+    try:
+        next_ref = BeautifulSoup(get_content(url), "html.parser").find("li", {"class": "next"}).a.get("href")
+
+        return next_ref
+    except AttributeError:
+        print("End of pages!")
+        return None
 
 
 def main():
     pages_counter = 1
-    next_url = find_next(url=start_url)
-
+    next_url = find_next(start_url)
     while True:
 
         if next_url:
-            next_url = find_next(url=start_url + next_url)
+            next_url = find_next(start_url + next_url)
             pages_counter += 1
 
         else:
-            print(pages_counter)
             break
 
     return pages_counter
