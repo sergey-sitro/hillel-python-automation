@@ -10,9 +10,8 @@ class TestIsEven(TestCase):
     def test_not_even(self):
         self.assertFalse(is_even(3))
 
-    def test_not_a_number_even(self):
-        with self.assertRaises(TypeError):
-            is_even("asd")
+    def test_is_even_negative(self):
+        self.assertTrue(is_even(-10))
 
 
 class TestIsOdd(TestCase):
@@ -23,26 +22,20 @@ class TestIsOdd(TestCase):
     def test_not_odd(self):
         self.assertFalse(is_odd(2))
 
-    def test_not_a_number_odd(self):
-        with self.assertRaises(TypeError):
-            is_odd("asd")
+    def test_is_odd_negative(self):
+        self.assertFalse(is_odd(-2))
 
 
 class TestCustomMax(TestCase):
 
     def test_custom_max(self):
         self.assertEqual(custom_max(1, 2), 2)
+
+    def test_custom_max_negative(self):
         self.assertEqual(custom_max(-2, -3), -2)
 
-    def test_custom_max_diff_types(self):
-        with self.assertRaises(TypeError):
-            custom_max(1, "a")
-
-        with self.assertRaises(TypeError):
-            custom_max("a", 1)
-
     def test_custom_max_str(self):
-        self.assertEqual(custom_max("asda", "asd"), "asda")
+        self.assertEqual(custom_max("hello world", "hello"), "hello world")
 
 
 class TestMultiply(TestCase):
@@ -65,9 +58,8 @@ class TestReverse(TestCase):
     def test_reverse_empty_str(self):
         self.assertEqual(reverse(""), "")
 
-    def test_reverse_int(self):
-        with self.assertRaises(TypeError):
-            reverse(5)
+    def test_reverse_palindrome(self):
+        self.assertEqual(reverse("madam"), "madam")
 
 
 class TestUpperCount(TestCase):
@@ -78,11 +70,8 @@ class TestUpperCount(TestCase):
     def test_upper_count_empty_str(self):
         self.assertEqual(upper_count(""), 0)
 
-    def test_upper_count_not_str(self):
-        with self.assertRaises(TypeError):
-            upper_count(2)
-            upper_count(True)
-            upper_count(None)
+    def test_upper_count_all_lower(self):
+        self.assertEqual(upper_count("hello"), 0)
 
 
 class TestUnique(TestCase):
@@ -93,11 +82,8 @@ class TestUnique(TestCase):
     def test_unique_empty_lst(self):
         self.assertEqual(unique([]), [])
 
-    def test_unique_not_iter(self):
-        with self.assertRaises(TypeError):
-            unique(2)
-            unique(None)
-            unique(True)
+    def test_unique_strings(self):
+        self.assertEqual(unique(["a", "a", "b", "b", "b", "ba", "ba", "bbb"]), ["a", "b", "ba", "bbb"])
 
 
 class TestIsPangram(TestCase):
@@ -108,11 +94,8 @@ class TestIsPangram(TestCase):
     def test_is_not_pangram(self):
         self.assertFalse(is_pangram("hello"))
 
-    def test_is_pangram_not_str(self):
-        with self.assertRaises(AttributeError):
-            is_pangram(2)
-            is_pangram(True)
-            is_pangram(None)
+    def test_is_not_pangram_empty(self):
+        self.assertFalse(is_pangram(""))
 
 
 if __name__ == "__main__":
