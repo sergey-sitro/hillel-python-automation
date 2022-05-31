@@ -7,10 +7,6 @@ def is_even(number):
     return number % 2 == 0
 
 
-# assert is_even(1) is False
-# assert is_even(10) is True
-
-
 def is_odd(number):
     """
     Принимает один аргумент
@@ -22,10 +18,6 @@ def is_odd(number):
     return not is_even(number)
 
 
-# assert is_odd(2) is False
-# assert is_odd(11) is True
-
-
 def custom_max(num1, num2):
     """
     Принимает два аргумента
@@ -33,10 +25,6 @@ def custom_max(num1, num2):
     Возвращает наибольший из двух элементов
     """
     return num1 if num1 > num2 else num2
-
-
-# assert custom_max(1, 10) == max(1, 10)
-# assert custom_max(100, 10) == max(100, 10)
 
 
 def multiply(*args, base=1):
@@ -54,20 +42,12 @@ def multiply(*args, base=1):
 example_list = list(range(1, 10))
 
 
-# assert multiply(*example_list) == 362880
-# assert multiply(*example_list, base=2) == 725760
-
-
 def reverse(string):
     """
     Принимает один аргумент, строку
     Возвращает развернутую строку
     """
     return string[::-1]
-
-
-# assert reverse("") == ""
-# assert reverse("QWERqwer123!@#") == "#@!321rewqREWQ"
 
 
 def upper_count(string):
@@ -78,19 +58,12 @@ def upper_count(string):
     return len([letter for letter in string if letter.isupper()])
 
 
-# assert upper_count("") == 0
-# assert upper_count("QWER qwer 123 !@#") == 4
-
-
 def unique(lst):
     """
     Принмает один аргумент, список
     Возвращает список уникальных элементов этого списка отсортированных от меньшего к большему
     """
     return sorted(list(set(lst)))
-
-
-# assert unique([2, 2, 1, 5, 5, 2, 7]) == [1, 2, 5, 7]
 
 
 def is_pangram(string):
@@ -101,6 +74,3 @@ def is_pangram(string):
     """
     alphabet = "abcdefghigjklmnopqrstuvwxyz"
     return all([a in string.replace(" ", "").lower() for a in alphabet])
-
-# assert is_pangram("The five boxing wizards jump quickly") is True
-# assert is_pangram("hello") is False
