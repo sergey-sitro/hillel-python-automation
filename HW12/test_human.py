@@ -39,4 +39,27 @@ def test_human_dead(human_almost_dead):
     assert human_almost_dead.status == "dead"
 
 
+@pytest.mark.positive
+@pytest.mark.change_name_func
+def test_change_name(human):
+    """
+    Description: check that human can change a name
 
+    Precondition: human is created
+
+    Steps:
+    1. call change_name() function and pass new name to it
+    2. observe human new name
+
+    Expected result: human has new name
+    """
+
+    human.change_name("Serhii Matkobozhyk")
+    assert human.name == "Serhii Matkobozhyk", f"Name is {human.name}, expected: Serhii Matkobozhyk"
+
+
+@pytest.mark.negative
+@pytest.mark.change_name_func
+def test_change_name_negative(human):
+    with pytest.raises(SyntaxError):
+        human.change_name("serhii")
