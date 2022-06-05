@@ -11,9 +11,9 @@ logger.setLevel('INFO')
 
 @pytest.fixture()
 def human():
-    print("\nFixture started")
+    logger.info("\nFixtire started")
     yield Human(name="John", age=20, gender="male")
-    print("\nFixture finished")
+    logger.info("\nFixtire finished")
 
 
 @pytest.fixture()

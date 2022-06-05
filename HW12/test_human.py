@@ -54,12 +54,48 @@ def test_change_name(human):
     Expected result: human has new name
     """
 
-    human.change_name("Serhii Matkobozhyk")
-    assert human.name == "Serhii Matkobozhyk", f"Name is {human.name}, expected: Serhii Matkobozhyk"
+    human.change_name("Serhii")
+    assert human.name == "Serhii", f"Name is {human.name}, expected: Serhii"
 
 
 @pytest.mark.negative
 @pytest.mark.change_name_func
-def test_change_name_negative(human):
-    with pytest.raises(SyntaxError):
-        human.change_name("serhii")
+@pytest.mark.parametrize("name", ["serhii", "sErhii", " ", "4", "matkobozhy", "matkobozhyk", "Serhii Matkobozhyk"])
+def test_change_name_negative(human, name):
+    """
+    Description: check that changed human name should start with uppercase letter
+                 and be less than 10 symbols length
+
+    Precondition: human is created
+
+    Step 1: call change_name() function and pass 'serhii' to it
+    Expected result: SyntaxError exception is raised with 'Name should starts with capital letter' message
+
+    Step 2: call change_name() function and pass 'sErhii' to it
+    Expected result: SyntaxError exception is raised with 'Name should starts with capital letter' message
+
+    Step 3: call change_name() function and pass ' ' to it
+    Expected result: SyntaxError exception is raised with 'Name should starts with capital letter' message
+
+    Step 4: call change_name() function and pass '4' to it
+    Expected result: SyntaxError exception is raised with 'Name should starts with capital letter' message
+
+    Step 5: call change_name() function and pass 'matkobozhy' to it
+    Expected result: SyntaxError exception is raised with 'Name should starts with capital letter' message
+
+    Step 6: call change_name() function and pass 'matkobozhyk' to it
+    Expected result: SyntaxError exception is raised with 'Name should starts with capital letter' message
+
+    Step 7: call change_name() function and pass 'Serhii Matkobozhyk' to it
+    Expected result: SyntaxError exception is raised with 'Name should starts with capital letter' message
+    """
+
+    with pytest.raises(SyntaxError) as e:
+        human.change_name(name)
+    assert str(e.value) == 'Name should starts with capital letter'
+
+
+
+
+
+
