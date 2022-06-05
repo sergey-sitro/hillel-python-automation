@@ -149,16 +149,52 @@ def test_make_friends_func(human, friend):
 
     Step 2: check human friends list
 
-    Expected result: human friends list length is 1
+    Expected result:
+    - human friends list length is 1
+    - friend's name is 'Peter'
+    - friend's age is 18
+    - friend's gender is 'male'
     """
 
     human.make_friends(friend)
     assert len(human.friends) == 1
+    assert human.friends[0].name == "Peter"
+    assert human.friends[0].age == 18
+    assert human.friends[0].gender == "male"
 
 
 @pytest.mark.negative
 @pytest.mark.make_friends_func
 def test_make_dead_friend(human, human_almost_dead):
+    """
+    Description: check that dead human can not be added to friends
+
+    Preconditions:
+    1. human is created
+    2. human has 0 friends
+    3. human_almost_dead is created
+
+    Steps:
+    1. call grow() function for human_almost_dead instance to make its status = 'dead'
+    2. call make_friends() function for human and pass human_almost_dead to it
+    3. check human friends list
+
+    Expected result: human friends list length is 0
+    """
     human_almost_dead.grow()
     human.make_friends(human_almost_dead)
     assert len(human.friends) == 0
+
+
+def test_get_friends(human, friend):
+    """
+    Description:
+    """
+    assert human.get_friends() == []
+
+    human.make_friends(friend)
+    assert len(human.get_friends())
+    assert human.get_friends()[0].name == "Peter"
+    assert human.get_friends()[0].age == 18
+    assert human.get_friends()[0].gender == "male"
+
