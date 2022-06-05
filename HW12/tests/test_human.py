@@ -95,7 +95,44 @@ def test_change_name_negative(human, name):
     assert str(e.value) == 'Name should starts with capital letter'
 
 
+@pytest.mark.positive
+@pytest.mark.gender_func
+@pytest.mark.parametrize("new_gender", ["female", "male"])
+def test_gender_func(human, new_gender):
+    """
+    Description: check that human can change gender
 
+    Preconditions:
+    1. human is created
+    2. human gender is 'male'
+
+    Step 1: change human gender to 'female'
+    Expected result: human gender is changed to 'female'
+
+    Step 2: change human gender back to 'male'
+    Expected result: human gender is 'male' again
+    """
+
+    human.gender = new_gender
+    assert human.gender == new_gender
+
+
+@pytest.mark.negative
+@pytest.mark.gender_func
+def test_gender_not_expected(human):
+    """
+    Description: check that exception is raised while trying to set unexpected gender
+
+    Precondition: human is created
+
+    Steps:
+    1. set human gender value which is not in ['female', 'male']
+
+    Expected result: Exception is raised with 'Gender is not as expected' message
+    """
+    with pytest.raises(Exception) as e:
+        human.gender = "ape"
+    assert str(e.value) == 'Gender is not as expected'
 
 
 

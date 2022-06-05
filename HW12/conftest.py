@@ -18,6 +18,6 @@ def human():
 
 @pytest.fixture()
 def human_almost_dead():
-    print("\nFixture started")
+    logger.info("\nFixtire started")
     yield Human(name="Abe", age=105, gender="male")
-    print("\nFixture finished")
+    logger.info("\nFixtire finished")
