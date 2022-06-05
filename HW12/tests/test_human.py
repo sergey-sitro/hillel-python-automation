@@ -135,4 +135,30 @@ def test_gender_not_expected(human):
     assert str(e.value) == 'Gender is not as expected'
 
 
+@pytest.mark.positive
+@pytest.mark.make_friends_func
+def test_make_friends_func(human, friend):
+    """
+    Description: check that human can make friends
 
+    Preconditions:
+    1. human is created
+    2. human has 0 friends
+
+    Step 1: call make_friends() function and pass another human to it
+
+    Step 2: check human friends list
+
+    Expected result: human friends list length is 1
+    """
+
+    human.make_friends(friend)
+    assert len(human.friends) == 1
+
+
+@pytest.mark.negative
+@pytest.mark.make_friends_func
+def test_make_dead_friend(human, human_almost_dead):
+    human_almost_dead.grow()
+    human.make_friends(human_almost_dead)
+    assert len(human.friends) == 0

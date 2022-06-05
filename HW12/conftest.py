@@ -21,3 +21,10 @@ def human_almost_dead():
     logger.info("\nFixtire started")
     yield Human(name="Abe", age=105, gender="male")
     logger.info("\nFixtire finished")
+
+
+@pytest.fixture()
+def friend():
+    logger.info("\nFixtire started")
+    yield Human(name="Peter", age=18, gender="male")
+    logger.info("\nFixtire finished")
