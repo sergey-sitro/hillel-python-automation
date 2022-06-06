@@ -35,6 +35,7 @@ def test_human_dead(human_almost_dead):
 
     Expected result: human.status is "dead"
     """
+
     human_almost_dead.grow()
     assert human_almost_dead.status == "dead"
 
@@ -130,6 +131,7 @@ def test_gender_not_expected(human):
 
     Expected result: Exception is raised with 'Gender is not as expected' message
     """
+
     with pytest.raises(Exception) as e:
         human.gender = "ape"
     assert str(e.value) == 'Gender is not as expected'
@@ -181,20 +183,83 @@ def test_make_dead_friend(human, human_almost_dead):
 
     Expected result: human friends list length is 0
     """
+
     human_almost_dead.grow()
     human.make_friends(human_almost_dead)
     assert len(human.friends) == 0
 
 
+@pytest.mark.positive
+@pytest.mark.get_friends_func
 def test_get_friends(human, friend):
     """
-    Description:
+    Description: check that get_friends() returns human.friends value
+
+    Preconditions:
+    1. human is created
+    2. human has 0 friends
+
+    Step 1: call get_friends() function to get friends of human
+    Expected result: get_friends() function returns empty list
+
+    Step 2: call make_friends() function to add a friend to human. Pass 'friend' instance to it.
+    Expected result: friend has been added
+
+    Step 3: check human friends list lenght
+    Expected result: human friends list lenght is 1
+
+    Step 4: check values of added friend
+    Expected result:
+    - friend's name is 'Peter'
+    - friend's age is 18
+    - friend's gender is 'male'
     """
+
     assert human.get_friends() == []
 
     human.make_friends(friend)
-    assert len(human.get_friends())
+    assert len(human.get_friends()) == 1
     assert human.get_friends()[0].name == "Peter"
     assert human.get_friends()[0].age == 18
     assert human.get_friends()[0].gender == "male"
 
+
+@pytest.mark.negative
+@pytest.mark.grow_func
+def test_grow_of_dead(human_almost_dead):
+    """
+    Description: check that exception is raised upon calling grow() function for dead human
+
+    Precondition: human_almost_dead is created
+
+    Steps:
+    1. call grow() function for human_almost_dead to make it dead
+    2. call grow() function once again
+
+    Expected result: Exception is raised with '{human_almost_dead.name} is already dead' message
+    """
+
+    human_almost_dead.grow()
+    with pytest.raises(Exception) as e:
+        human_almost_dead.grow()
+    assert str(e.value) == f'{human_almost_dead.name} is already dead'
+
+
+@pytest.mark.negative
+@pytest.mark.change_name_func
+def test_change_name_of_dead(human_almost_dead):
+    """
+        Description: check that exception is raised upon calling change_name() function for dead human
+
+        Precondition: human_almost_dead is created
+
+        Steps:
+        1. call grow() function for human_almost_dead to make it dead
+        2. call change_name() function for human_almost_dead and pass any name to it
+
+        Expected result: Exception is raised with '{human_almost_dead.name} is already dead' message
+        """
+    human_almost_dead.grow()
+    with pytest.raises(Exception) as e:
+        human_almost_dead.change_name("David")
+    assert str(e.value) == f'{human_almost_dead.name} is already dead'
