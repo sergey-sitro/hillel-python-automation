@@ -2,38 +2,45 @@
 
 # 1st item:
 # Find name of 1st item: //*[text()='Sauce Labs Backpack']
-# Find description of 1st item: //a[@id='item_4_title_link']/following-sibling::div
-# Find price of 1st item: //a[@id='item_4_title_link']/../following-sibling::div/div[@class='inventory_item_price']
+# Find description of 1st item: //*[text()='Sauce Labs Backpack']/../following-sibling::div[@class='inventory_item_desc']
+# Find price of 1st item: //*[text()='Sauce Labs Backpack']/../../following-sibling::div[@class='pricebar']/div[@class='inventory_item_price']
 # Find 'Add to Cart' button of 1st item: //button[@data-test='add-to-cart-sauce-labs-backpack']
 # Find picture of 1st item: //img[@alt='Sauce Labs Backpack']
 
 # 2nd item:
-# Find name of 2nd item:
-# Find description of 2nd item:
-# Find price of 2nd item:
-# Find 'Add to Cart' button of 2nd item:
-# Find picture of 2nd item:
+# Find name of 2nd item: //*[text()='Sauce Labs Bike Light']
+# Find description of 2nd item: //*[text()='Sauce Labs Bike Light']/../following-sibling::div[@class='inventory_item_desc']
+# Find price of 2nd item: //*[text()='Sauce Labs Bike Light']/../../following-sibling::div[@class='pricebar']/div[@class='inventory_item_price']
+# Find 'Add to Cart' button of 2nd item: //button[@data-test='add-to-cart-sauce-labs-bike-light']
+# Find picture of 2nd item: //img[@alt='Sauce Labs Bike Light']
 
 # 3rd item:
-# Find name of 3rd item:
-# Find description of 3rd item:
-# Find price of 3rd item:
-# Find 'Add to Cart' button of 3rd item:
-# Find picture of 3rd item:
+# Find name of 3rd item: //*[text()='Sauce Labs Bolt T-Shirt']
+# Find description of 3rd item: //*[text()='Sauce Labs Bolt T-Shirt']/../following-sibling::div[@class='inventory_item_desc']
+# Find price of 3rd item: //*[text()='Sauce Labs Bolt T-Shirt']/../../following-sibling::div[@class='pricebar']/div[@class='inventory_item_price']
+# Find 'Add to Cart' button of 3rd item: //button[@data-test="add-to-cart-sauce-labs-bolt-t-shirt"]
+# Find picture of 3rd item: //img[@alt='Sauce Labs Bolt T-Shirt']
 
 # 4th item:
-# Find name of 4th item:
-# Find description of 4th item:
-# Find price of 4th item:
-# Find 'Add to Cart' button of 4th item:
-# Find picture of 4th item:
+# Find name of 4th item: //*[text()='Sauce Labs Fleece Jacket']
+# Find description of 4th item: //*[text()='Sauce Labs Fleece Jacket']/../following-sibling::div[@class='inventory_item_desc']
+# Find price of 4th item: //*[text()='Sauce Labs Fleece Jacket']/../../following-sibling::div[@class='pricebar']/div[@class='inventory_item_price']
+# Find 'Add to Cart' button of 4th item: //button[@data-test="add-to-cart-sauce-labs-fleece-jacket"]
+# Find picture of 4th item: //img[@alt='Sauce Labs Fleece Jacket']
 
 # 5th item:
-# Find name of 5th item:
-# Find description of 5th item:
-# Find price of 5th item:
-# Find 'Add to Cart' button of 5th item:
-# Find picture of 5th item:
+# Find name of 5th item: //*[text()='Sauce Labs Onesie']
+# Find description of 5th item: //*[text()='Sauce Labs Onesie']/../following-sibling::div[@class='inventory_item_desc']
+# Find price of 5th item: //*[text()='Sauce Labs Onesie']/../../following-sibling::div[@class='pricebar']/div[@class='inventory_item_price']
+# Find 'Add to Cart' button of 5th item: //button[@data-test="add-to-cart-sauce-labs-onesie"]
+# Find picture of 5th item: //img[@alt='Sauce Labs Onesie']
+
+# 6th item:
+# Find name of 5th item: //*[text()='Test.allTheThings() T-Shirt (Red)']
+# Find description of 5th item: //*[text()='Test.allTheThings() T-Shirt (Red)']/../following-sibling::div[@class='inventory_item_desc']
+# Find price of 5th item: //*[text()='Test.allTheThings() T-Shirt (Red)']/../../following-sibling::div[@class='pricebar']/div[@class='inventory_item_price']
+# Find 'Add to Cart' button of 5th item: //button[@data-test="add-to-cart-test.allthethings()-t-shirt-(red)"]
+# Find picture of 5th item: //img[@alt='Test.allTheThings() T-Shirt (Red)']
 
 
-
+# CSS locators:
