@@ -44,3 +44,14 @@
 
 
 # CSS locators:
+# Find name of 1st item: $$('#item_4_title_link div')
+# Find description of 1st item: $$('#item_4_title_link ~ div')
+# Find price of 1st item: $$('#inventory_container > div > div:nth-child(1) > div.inventory_item_description > div.pricebar > div')
+# Find 'Add to Cart' button of 1st item: $$('#add-to-cart-sauce-labs-backpack')
+# Find picture of 1st item: $$('#item_4_img_link > img')
+
+# Find name of 2nd item: $$('#item_0_title_link div')
+# Find description of 2nd item: $$('#item_0_title_link ~ div')
+# Find price of 2nd item: $$('#inventory_container > div > div:nth-child(2) > div.inventory_item_description > div.pricebar > div')
+# Find 'Add to Cart' button of 2nd item: $$('#add-to-cart-sauce-labs-bike-light')
+# Find picture of 2nd item: $$('#item_0_img_link > img')
