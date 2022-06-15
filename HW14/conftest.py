@@ -6,7 +6,6 @@ from webdriver_manager.firefox import GeckoDriverManager
 from selenium.webdriver.firefox.service import Service as FirefoxService
 
 
-
 @pytest.fixture()
 def create_chrome_driver():
     chrome_driver = webdriver.Chrome(service=ChromeService(ChromeDriverManager().install()))
