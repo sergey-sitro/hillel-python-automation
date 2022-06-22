@@ -15,7 +15,8 @@ class BasePage:
         element = self.wait_until_element_located(locator)
         element.click()
 
-    def get_text(self, element):
+    def get_text(self, locator):
+        element = self.wait_until_element_located(locator)
         return element.text
 
     def send_keys(self, locator, value, is_clear=False):
@@ -27,3 +28,9 @@ class BasePage:
     @property
     def title(self):
         return self._driver.title
+
+    def wait_until_all_elements_located(self, locator):
+        return WebDriverWait(self._driver, 10).until(EC.presence_of_all_elements_located(locator))
+
+    def get_list_of_elements(self, locator):
+        return [item.text for item in self.wait_until_all_elements_located(locator)]
