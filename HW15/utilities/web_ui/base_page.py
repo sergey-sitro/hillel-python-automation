@@ -1,4 +1,5 @@
 from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.support.select import Select
 from selenium.webdriver.support.wait import WebDriverWait
 
 
@@ -34,3 +35,6 @@ class BasePage:
 
     def get_list_of_elements(self, locator):
         return [item.text for item in self.wait_until_all_elements_located(locator)]
+
+    def change_sorting(self, locator, text):
+        return Select(self.wait_until_element_located(locator)).select_by_visible_text(text)

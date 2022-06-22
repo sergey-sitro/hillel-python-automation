@@ -1,5 +1,4 @@
 from selenium.webdriver.common.by import By
-from selenium.webdriver.support.ui import Select
 from HW15.utilities.web_ui.base_page import BasePage
 
 
@@ -20,9 +19,6 @@ class InventoryPage(BasePage):
 
     def get_item_names(self):
         return self.get_list_of_elements(self._item_name)
-
-    def change_sorting(self, text):
-        return Select(self.wait_until_element_located(self._sorting_dropdown)).select_by_visible_text(text)
 
     def get_item_prices(self):
         return self.get_list_of_elements(self._item_price)
