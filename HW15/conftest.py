@@ -3,12 +3,13 @@ import pytest
 from HW15.page_objects.inventory_page import InventoryPage
 from HW15.utilities.driver_factory import DriverFactory
 from HW15.page_objects.login_page import LoginPage
+from HW15.utilities.run_settings import ReadConfig
 
 
 @pytest.fixture()
 def create_driver():
-    driver = DriverFactory.create_driver(driver_id=1)
-    driver.get('https://www.saucedemo.com/')
+    driver = DriverFactory.create_driver(driver_id=int(ReadConfig.get_driver_id()))
+    driver.get(ReadConfig.get_application_url())
     driver.maximize_window()
     yield driver
     driver.quit()

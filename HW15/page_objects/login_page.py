@@ -25,4 +25,4 @@ class LoginPage(BasePage):
         return InventoryPage(self._driver)
 
     def login_error_message(self):
-        return self.wait_until_element_located(self.__login_error_message)
+        return self.wait_until_element_located(self.__login_error_message).text

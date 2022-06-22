@@ -7,7 +7,6 @@ from webdriver_manager.firefox import GeckoDriverManager
 class DriverFactory:
     CHROME = 1
     FIRE_FOX = 2
-    SAFARI = 3
 
     @staticmethod
     def create_driver(driver_id):
