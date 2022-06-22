@@ -1,8 +1,5 @@
-def test_login_success(get_login_page):
-    login_page = get_login_page
-    user_name = "standard_user"
-    password = "secret_sauce"
-    inventory_page = login_page.set_user_name(user_name).set_password(password).click_login_button()
+def test_login_success(login):
+    inventory_page = login
     assert inventory_page.get_page_header == "PRODUCTS"
 
 

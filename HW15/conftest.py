@@ -22,3 +22,12 @@ def get_login_page(create_driver):
 @pytest.fixture()
 def get_inventory_page(create_driver):
     return InventoryPage(create_driver)
+
+
+@pytest.fixture()
+def login(get_login_page):
+    driver = get_login_page
+    user_name = "standard_user"
+    password = "secret_sauce"
+    inventory_page = driver.set_user_name(user_name).set_password(password).click_login_button()
+    return inventory_page
