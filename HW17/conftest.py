@@ -9,3 +9,9 @@ def register():
     body = {"userName": req_username, "password": "Qwerty1!"}
     response = AccountApi.post_user(AccountApi(), json=body)
     return response
+
+
+@pytest.fixture()
+def register_empty():
+    response = AccountApi.post_user(AccountApi())
+    return response
