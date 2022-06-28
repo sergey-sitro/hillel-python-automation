@@ -12,6 +12,6 @@ class BaseAPI:
         response = self.request.get(f"{self.base_url}{url}", data=body, headers=headers, params=params)
         return response
 
-    def post(self, url, body=None, headers=None, params=None):
-        response = self.request.post(f"{self.base_url}{url}", data=body, headers=headers, params=params)
+    def post(self, url, json=None, headers=None, params=None):
+        response = self.request.post(f"{self.base_url}{url}", json=json, headers=headers, params=params)
         return response

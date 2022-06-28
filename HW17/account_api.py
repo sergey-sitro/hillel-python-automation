@@ -10,5 +10,5 @@ class AccountApi(BaseAPI):
         self.authorized_url = "/Authorized"
         self.user_url = "/User"
 
-    def post_user(self, headers=None, body=None):
-        return self.post(url=f"{self.account_url}{self.user_url}", body=body, headers=headers)
+    def post_user(self, headers=None, json=None):
+        return self.post(url=f"{self.account_url}{self.user_url}", json=json, headers=headers)
