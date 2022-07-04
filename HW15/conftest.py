@@ -7,7 +7,6 @@ from HW15.utilities.run_settings import ReadConfig
 from HW15.api_collections.account_api import AccountApi
 from random import randint
 from HW15.utilities.json_parser import json_parser
-from HW15.config import test_password
 
 
 @pytest.fixture()
@@ -41,7 +40,7 @@ def login(get_login_page):
 @pytest.fixture()
 def register():
     req_username = "test_" + str(randint(1, 1000000000))
-    body = {"userName": req_username, "password": test_password}
+    body = {"userName": req_username, "password": ReadConfig.get_test_password()}
     response = AccountApi().post_user(json=body)
     return response
 
@@ -55,14 +54,14 @@ def register_empty():
 @pytest.fixture()
 def generate_token(register):
     response = AccountApi().post_generate_token(json={"userName": json_parser(register.text)["username"],
-                                                      "password": test_password})
+                                                      "password": ReadConfig.get_test_password()})
     return response
 
 
 @pytest.fixture()
 def is_authorized(register):
     response = AccountApi().post_authorized(json={"userName": json_parser(register.text)["username"],
-                                                  "password": test_password})
+                                                  "password": ReadConfig.get_test_password()})
     return response
 
 
