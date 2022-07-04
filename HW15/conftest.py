@@ -1,12 +1,10 @@
-import json
-
 import pytest
 
 from HW15.page_objects.inventory_page import InventoryPage
 from HW15.utilities.driver_factory import DriverFactory
 from HW15.page_objects.login_page import LoginPage
 from HW15.utilities.run_settings import ReadConfig
-from HW15.account_api import AccountApi
+from HW15.api_collections.account_api import AccountApi
 from random import randint
 from HW15.utilities.json_parser import json_parser
 from HW15.config import test_password
