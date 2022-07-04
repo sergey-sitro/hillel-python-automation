@@ -6,7 +6,17 @@ from http import HTTPStatus
 
 @pytest.mark.post_user
 def test_post_user_response_status(register):
-    # Verify response status of successful registration
+    """
+    Description: Verify response status of successful registration
+
+    Steps:
+    1. Send POST https://www.saucedemo.com/Account/v1/User with payload:
+    {"userName": <random_username>, "password": <test_password>}
+
+    Expected result:
+    - response code is 201
+    - response reason is "Created"
+    """
 
     response = register
     assert response.status_code == HTTPStatus.CREATED
@@ -15,7 +25,17 @@ def test_post_user_response_status(register):
 
 @pytest.mark.post_user
 def test_post_user_response_body_new_user(register):
-    # Verify response body of new user
+    """
+    Description: Verify response body of new user
+
+    Steps:
+    1. Send POST https://www.saucedemo.com/Account/v1/User with payload:
+    {"userName": <random_username>, "password": <test_password>}
+
+    Expected result:
+    - response body contains "userID"
+    - response body contains "username" which is equal to request body "username"
+    """
 
     response = register
     req_username = json_parser(response.request.body)["userName"]
@@ -27,7 +47,18 @@ def test_post_user_response_body_new_user(register):
 
 @pytest.mark.post_user
 def test_post_user_empty_status(register_empty):
-    # Verify response while registering user with empty request body
+    """
+    Description: Verify response status and body while registering user with empty request body
+
+    Steps:
+    1. Send POST https://www.saucedemo.com/Account/v1/User with no payload
+
+    Expected result:
+    - response code is 400
+    - response reason is "Bad Request"
+    - response body contains "code" == "1200"
+    - response body contains "message" == "UserName and Password required."
+    """
 
     response = register_empty
 
@@ -39,6 +70,22 @@ def test_post_user_empty_status(register_empty):
 
 @pytest.mark.post_generate_token
 def test_post_generate_token(generate_token):
+    """
+    Description: Verify response of POST /GenerateToken request
+    Steps:
+    1. Register user with POST https://www.saucedemo.com/Account/v1/User requst
+    2. Send POST https://www.saucedemo.com/Account/v1//GenerateToken with payload:
+    {"userName": <registered_username>, "password": <test_password>}
+
+    Expected result:
+    - response code is 200
+    - response reason is "OK"
+    - response body contains "token"
+    - response body contains "expires" which is equal to date of <today + 7 days>
+    - response body contains "status" == "Success"
+    - response body contains "result" == "User authorized successfully."
+    """
+
     response = generate_token
     assert response.status_code == HTTPStatus.OK
     assert response.reason == "OK"
@@ -50,13 +97,41 @@ def test_post_generate_token(generate_token):
 
 @pytest.mark.post_authorized
 def test_registered_user_is_not_authorized(is_authorized):
-    # Verify that registered user is not authorized by default
+    """
+    Description: Verify that newly registered user is not authorized by default
+
+    Steps:
+    1. Send POST https://www.saucedemo.com/Account/v1/User with payload:
+    {"userName": <random_username>, "password": <test_password>}
+    2. Send POST https://www.saucedemo.com/Account/v1/Authorized with same payload
+    Expected result:
+    - response text is "false"
+    """
+
     response = is_authorized
     assert response.text == "false"
 
 
 @pytest.mark.get_user
 def test_get_user(get_user):
+    """
+    Description: Verify response of Get /User request
+
+    Steps:
+    1. Send POST https://www.saucedemo.com/Account/v1/User with payload:
+    {"userName": <random_username>, "password": <test_password>}
+    2. Send POST https://www.saucedemo.com/Account/v1/Authorized with same payload
+    3. Send GET https://www.saucedemo.com/Account/v1/User/<uuid_from_response_from_step_1> with header:
+    {"Authorization": "Bearer + <token_from_step_2>"}
+
+    Expected result:
+    - response code is 200
+    - response reason is "OK"
+    - response body contains "userId"
+    - response body contains "username"
+    - response body contains "books" == []
+    """
+
     response = get_user
     assert response.status_code == HTTPStatus.OK
     assert response.reason == "OK"
@@ -67,6 +142,23 @@ def test_get_user(get_user):
 
 @pytest.mark.get_user
 def test_get_invalid_user(get_invalid_user):
+    """
+        Description: Verify response of Get /User request for invalid userID
+
+        Steps:
+        1. Send POST https://www.saucedemo.com/Account/v1/User with payload:
+        {"userName": <random_username>, "password": <test_password>}
+        2. Send POST https://www.saucedemo.com/Account/v1/Authorized with same payload
+        3. Send GET https://www.saucedemo.com/Account/v1/User/<random_invalid_userID> with header:
+        {"Authorization": "Bearer + <token_from_step_2>"}
+
+        Expected result:
+        - response code is 401
+        - response reason is "Unauthorized"
+        - response body contains "code" == "1207"
+        - response body contains "message" == "User not found!"
+        """
+
     response = get_invalid_user
     assert response.status_code == HTTPStatus.UNAUTHORIZED
     assert response.reason == "Unauthorized"
@@ -76,6 +168,21 @@ def test_get_invalid_user(get_invalid_user):
 
 @pytest.mark.delete_user
 def test_delete_user(delete_user_success):
+    """
+    Description: Verify response of successful DELETE /User request
+
+    Steps:
+    1. Send POST https://www.saucedemo.com/Account/v1/User with payload:
+    {"userName": <random_username>, "password": <test_password>}
+    2. Send POST https://www.saucedemo.com/Account/v1/Authorized with same payload
+    3. Send DELETE https://www.saucedemo.com/Account/v1/User/<uuid_from_response_of_step_1> with header:
+    {"Authorization": "Bearer + <token_from_step_2>"}
+
+    Expected result:
+    - response text is empty
+    - response code is 204
+    """
+
     response = delete_user_success
     assert response.text == ""
     assert response.status_code == HTTPStatus.NO_CONTENT
@@ -83,6 +190,23 @@ def test_delete_user(delete_user_success):
 
 @pytest.mark.delete_user
 def test_delete_user_invalid(delete_user_invalid):
+    """
+    Description: Verify response of DELETE /User request for invalid user
+
+    Steps:
+    1. Send POST https://www.saucedemo.com/Account/v1/User with payload:
+    {"userName": <random_username>, "password": <test_password>}
+    2. Send POST https://www.saucedemo.com/Account/v1/Authorized with same payload
+    3. Send DELETE https://www.saucedemo.com/Account/v1/User/<random_invalid_userID> with header:
+    {"Authorization": "Bearer + <token_from_step_2>"}
+
+    Expected result:
+    - response code is 200
+    - response reason is "OK"
+    - response contains "code" == "1207"
+    - response contains "message" == "User Id not correct!"
+    """
+
     response = delete_user_invalid
     assert response.status_code == HTTPStatus.OK
     assert response.reason == "OK"
