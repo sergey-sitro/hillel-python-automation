@@ -1,5 +1,5 @@
-from patterns_lesson.proxy_pattern.reader import Reader
-from patterns_lesson.proxy_pattern.txt_reader import TxtReader
+from HW18.proxy_pattern.abstract_reader import Reader
+from HW18.proxy_pattern.txt_reader import TxtReader
 
 
 class TxtProxyReader(Reader):
