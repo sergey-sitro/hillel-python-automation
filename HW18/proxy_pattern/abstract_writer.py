@@ -1,8 +1,7 @@
 from abc import ABC, abstractmethod
 
 
-class Reader(ABC):
+class Writer(ABC):
     @abstractmethod
-    def read_file(self):
+    def write_file(self, new_data):
         pass
-  
