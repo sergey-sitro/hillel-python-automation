@@ -1,3 +1,6 @@
+from contextlib import suppress
+
+import allure
 import pytest
 
 from HW15.page_objects.inventory_page import InventoryPage
@@ -9,12 +12,25 @@ from random import randint
 from HW15.utilities.json_parser import json_parser
 
 
+@pytest.hookimpl(hookwrapper=True, tryfirst=True)
+def pytest_runtest_makereport(item, call):
+    outcome = yield
+    rep = outcome.get_result()
+    setattr(item, "rep_" + rep.when, rep)
+    return rep
+
+
 @pytest.fixture()
-def create_driver():
+def create_driver(request):
     driver = DriverFactory.create_driver(driver_id=int(ReadConfig.get_driver_id()))
     driver.get(ReadConfig.get_application_url())
     driver.maximize_window()
     yield driver
+    if request.node.rep_call.failed:
+        with suppress(Exception):
+            allure.attach(driver.get_screenshot_as_png(),
+                          name=request.function.__name__,
+                          attachment_type=allure.attachment_type.PNG)
     driver.quit()
 
 

@@ -1,3 +1,4 @@
+import allure
 from selenium.webdriver.common.by import By
 from HW15.utilities.web_ui.base_page import BasePage
 
@@ -14,20 +15,26 @@ class InventoryPage(BasePage):
         super().__init__(driver)
 
     @property
+    @allure.step
     def get_page_header(self):
         return self.get_text(self._header)
 
+    @allure.step
     def get_item_names(self):
         return self.get_list_of_elements(self._item_name)
 
+    @allure.step
     def get_item_prices(self):
         return self.get_list_of_elements(self._item_price)
 
+    @allure.step
     def get_item_prices_float(self):
         return [float(price.replace("$", "")) for price in self.get_item_prices()]
 
+    @allure.step
     def get_add_to_cart_buttons(self):
         return self.wait_until_all_elements_located(self._add_to_cart_buttons)
 
+    @allure.step
     def get_cart_badge(self):
         return self.wait_until_element_located(self._cart_badge)

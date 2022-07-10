@@ -13,9 +13,9 @@ def test_login_success(login):
         - page header is "PRODUCTS"
         """
     inventory_page = login
-    assert inventory_page.get_page_header == "PRODUCTS", f"\nWrong page header!" \
-                                                         f"\nActual result: {inventory_page}" \
-                                                         f"\nExpected result: 'PRODUCTS'"
+    assert inventory_page.get_page_header == "PRODUCT", f"\nWrong page header!" \
+                                                        f"\nActual result: {inventory_page.get_page_header}" \
+                                                        f"\nExpected result: 'PRODUCTS'"
 
 
 def test_login_fail_empty(get_login_page):
