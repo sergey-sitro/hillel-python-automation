@@ -1,6 +1,5 @@
-from sqlalchemy import Integer, Column, VARCHAR, ForeignKey
+from sqlalchemy import Integer, Column, VARCHAR
 from HW21.sql_alchemy.session import Base
-from sqlalchemy.orm import relationship
 
 
 class Product(Base):

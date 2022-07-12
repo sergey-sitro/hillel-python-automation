@@ -1,5 +1,4 @@
 from sqlalchemy import Integer, Column, ForeignKey
-
 from HW21.sql_alchemy.session import Base
 
 

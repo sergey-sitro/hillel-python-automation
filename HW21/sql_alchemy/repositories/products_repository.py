@@ -6,6 +6,6 @@ class ProductsRepository:
     def __init__(self):
         self.__session = session
 
-    def get_by_id(self, id_value: int):
-        product = self.__session.get(Product, {'product_id': id_value})
-        return product
+    def insert_product(self, product: Product):
+        self.__session.add(product)
+        self.__session.commit()
