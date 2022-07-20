@@ -6,7 +6,7 @@ class UsersCollection(BaseDB):
     users_collection = users_db['users']
 
     def __init__(self, collection=users_collection):
-        super().__init__()
+        super(UsersCollection, self).__init__()
         self.collection = collection
 
     def insert_user(self, data):
