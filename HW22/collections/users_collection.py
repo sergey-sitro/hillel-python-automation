@@ -2,12 +2,10 @@ from HW22.utilities.baseDB import BaseDB
 
 
 class UsersCollection(BaseDB):
-    users_db = BaseDB().client["users_db"]
-    users_collection = users_db['users']
 
-    def __init__(self, collection=users_collection):
-        super(UsersCollection, self).__init__()
-        self.collection = collection
+    def __init__(self):
+        super().__init__()
+        self.collection = self.client['users_db']['users']
 
     def insert_user(self, data):
         return BaseDB.base_insert_one(self.collection, data)
