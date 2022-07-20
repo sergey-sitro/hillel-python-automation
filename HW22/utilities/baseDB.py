@@ -8,7 +8,7 @@ class BaseDB:
         self.collection = None
 
     def base_insert_one(self, data):
-        self.insert_one(data)
+        self.collection.insert_one(data)
 
     # def base_insert_many(collection, data):
     #     collection.insert_many(data)
