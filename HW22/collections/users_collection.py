@@ -5,7 +5,7 @@ class UsersCollection(BaseDB):
 
     def __init__(self):
         super().__init__()
-        self.collection = self.client['users_db']['users_collection']
+        self.collection = self.client['users_db']['users']
 
     def insert_user(self, data):
         return BaseDB.base_insert_one(self.collection, data)
